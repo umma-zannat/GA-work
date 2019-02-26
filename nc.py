@@ -7,11 +7,8 @@ import os
 
 from netCDF4 import Dataset
 import numpy as np
-#from scipy.spatial import cKDTree as KDTree
+from scipy.spatial import cKDTree as KDTree
 from pyproj import transform, Proj
-
-#from mtpy.utils import gis_tools
-
 
 def IDW_NN(source_points, source_values, query_points, k=6, p=5):
     """
