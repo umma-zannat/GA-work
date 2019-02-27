@@ -22,18 +22,18 @@ def IDW_NN(source_points, source_values, query_points, k=6, p=5):
     weights = inv_dist / inv_dist.sum(axis=1)[:, np.newaxis]
     return (weights * source_values[indices]).sum(axis=1)
 
-def IDW_radius(source_points, source_values, query_points, radius, p=1):
+def IDW_radius(source_points, source_values, query_points, radius):
     from sklearn.neighbors.ball_tree import BinaryTree
 
     tree = BinaryTree(source_points, leaf_size=2)
     index, Distance = tree.query_radius(query_points, radius, count_only=False, return_distance=True)
     npoints = query_points.shape[0]
-    result = np.zeros((npoints,), dtype=source_values.dtype)
+    result = np.zeros((npoints,), dtype=value.dtype)
 
     for i in range(npoints):
-        inv_dist = 1. / np.power(Distance[i], p)
+        inv_dist = 1. / np.power(dist[i], p)
         weights = inv_dist / inv_dist.sum()
-        result[i] = (weights * source_values[index[i]]).sum()
+        result[i] = (weights * value[ind[i]]).sum()
 
     return result
     
@@ -68,12 +68,12 @@ def set_grid_mapping_attrs_geographic(crs_var, proj):
 
 
 def write_resistivity_grid(output_file, epsg_code,
-                           latitude, longitude, elevation, resistivity_data,
+                           latitude, longitude, elevation, seismic_data,
                            **kwargs):
     """ Resistivity_data in (elevation, latitude, longitude) grid. """
 
     with create_dataset(output_file) as dataset:
-        dataset.description = 'Resistivity Model'
+        dataset.description = 'Seismic Model'
 
         z_label = kwargs.get('z_label', 'elevation')
 
@@ -91,17 +91,17 @@ def write_resistivity_grid(output_file, epsg_code,
             var.units = 'degree'
         z.units = 'm'
 
-        resistivity = dataset.createVariable('resistivity', 'f4', (z_label, 'latitude', 'longitude'))
-        resistivity.grid_mapping = 'crs'
-        resistivity.long_name = 'resistivity'
-        resistivity.units = "ohm-m"
+        seismic = dataset.createVariable('seismic', 'f4', (z_label, 'latitude', 'longitude'))
+        seismic.grid_mapping = 'crs'
+        seismic.long_name = 'seismic'
+        seismic.units = "Nm"
 
         # populate variables
         x[:] = latitude
         y[:] = longitude
         z[:] = elevation
 
-        resistivity[:, :, :] = resistivity_data
+        seismic[:, :, :] = seismic_data
 
         # attach crs info
         crs_var = dataset.createVariable('crs', 'i4', ())
