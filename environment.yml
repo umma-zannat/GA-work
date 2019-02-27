@@ -10,7 +10,9 @@ dependencies:
   - bzip2=1.0.6=h14c3975_1002
   - ca-certificates=2018.11.29=ha4d7672_0
   - certifi=2018.11.29=py36_1000
+  - cftime=1.0.3.4=py36h3010b51_1000
   - curl=7.64.0=h646f8bb_2
+  - cython=0.29.5=py36hf484d3e_0
   - decorator=4.3.2=py_0
   - entrypoints=0.3=py36_1000
   - freetype=2.9.1=h94bbf69_1005
@@ -20,6 +22,7 @@ dependencies:
   - gettext=0.19.8.1=h9745a5d_1001
   - giflib=5.1.4=h14c3975_1001
   - glib=2.56.2=had28632_1001
+  - gmp=6.1.2=hf484d3e_1000
   - hdf4=4.2.13=h9a582f1_1002
   - hdf5=1.10.4=nompi_h11e915b_1105
   - icu=58.2=hf484d3e_1000
@@ -62,9 +65,12 @@ dependencies:
   - mistune=0.8.4=py36h14c3975_1000
   - mkl_fft=1.0.10=py36h14c3975_1
   - mkl_random=1.0.2=py36h637b7d7_2
+  - mpc=1.1.0=4
+  - mpfr=3.1.5=0
   - nbconvert=5.3.1=py_1
   - nbformat=4.4.0=py_1
   - ncurses=6.1=hf484d3e_1002
+  - netcdf4=1.4.2=py36had69b76_1001
   - notebook=5.7.4=py36_1000
   - openblas=0.3.3=h9ac9557_1001
   - openjpeg=2.3.0=hf38bd82_1003
@@ -76,7 +82,7 @@ dependencies:
   - pickleshare=0.7.5=py36_1000
   - pip=19.0.3=py36_0
   - pixman=0.34.0=h14c3975_1003
-  - poppler=0.67.0=h2fc8fa2_1002
+  - poppler=0.72.0=h2fc8fa2_1000
   - poppler-data=0.4.9=1
   - proj4=5.2.0=h14c3975_1001
   - prometheus_client=0.6.0=py_0
@@ -124,6 +130,7 @@ dependencies:
   - zlib=1.2.11=h14c3975_1004
   - blas=1.0=mkl
   - cairo=1.14.12=h8948797_3
+  - cloog=0.18.0=0
   - dbus=1.13.2=h714fa37_1
   - expat=2.2.6=he6710b0_0
   - fontconfig=2.13.0=h9420a91_0
@@ -131,6 +138,7 @@ dependencies:
   - gst-plugins-base=1.14.0=hbbd80ab_1
   - gstreamer=1.14.0=hb453b48_1
   - intel-openmp=2019.1=144
+  - isl=0.12.2=0
   - libgdal=2.3.3=h2e7e64b_0
   - libpq=11.1=h20c2e04_0
   - mkl=2019.1=144

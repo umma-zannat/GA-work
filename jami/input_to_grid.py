@@ -15,7 +15,7 @@ import argparse
 import numpy as np
 from pyproj import Proj
 
-import nc
+from jami import nc
 
 
 def read_winglink_xyzv(input_file, false_easting=0.0, false_northing=0.0):
@@ -49,8 +49,8 @@ def mask_interpolate_and_write(output_file,
     source_values = source_values[mask]
 
     # interpolate data at grid points and reshape back to the grid
-    #resistivity = nc.IDW_NN(source_points, source_values, utm_points)
-    resistivity = nc.IDW_radius(source_points, source_values, utm_points, radius=1000., p=5)
+    resistivity = nc.IDW_NN(source_points, source_values, utm_points)
+    #resistivity = nc.IDW_radius(source_points, source_values, utm_points, radius=1000., p=5)
     resistivity = resistivity.reshape(grid_points.shape[:3])
 
     # write to output NetCDF file
