@@ -1,6 +1,4 @@
-input_files/*
 netCDF_files/*
-notebooks/*
 jami/ndlinear/*.c
 
 # Created by https://www.gitignore.io/api/python

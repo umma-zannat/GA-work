@@ -151,5 +151,7 @@ dependencies:
   - util-linux=2.21=0
   - pip:
     - jami==0.0.0
+    - scikit-learn==0.20.2
+    - sklearn==0.0
 prefix: /home/jami/.anaconda3/envs/jami_env
 

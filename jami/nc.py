@@ -9,6 +9,7 @@ from netCDF4 import Dataset
 import numpy as np
 from scipy.spatial import cKDTree as KDTree
 from pyproj import transform, Proj
+from sklearn.neighbors.ball_tree import BinaryTree
 
 def IDW_NN(source_points, source_values, query_points, k=6, p=5):
     """
@@ -22,18 +23,17 @@ def IDW_NN(source_points, source_values, query_points, k=6, p=5):
     weights = inv_dist / inv_dist.sum(axis=1)[:, np.newaxis]
     return (weights * source_values[indices]).sum(axis=1)
 
-def IDW_radius(source_points, source_values, query_points, radius):
-    from sklearn.neighbors.ball_tree import BinaryTree
+def IDW_radius(source_points, source_values, query_points, radius, p):
 
     tree = BinaryTree(source_points, leaf_size=2)
     index, Distance = tree.query_radius(query_points, radius, count_only=False, return_distance=True)
     npoints = query_points.shape[0]
-    result = np.zeros((npoints,), dtype=value.dtype)
+    result = np.zeros((npoints,), dtype=source_values.dtype)
 
     for i in range(npoints):
-        inv_dist = 1. / np.power(dist[i], p)
+        inv_dist = 1. / np.power(Distance[i], p)
         weights = inv_dist / inv_dist.sum()
-        result[i] = (weights * value[ind[i]]).sum()
+        result[i] = (weights * source_values[index[i]]).sum()
 
     return result
     
